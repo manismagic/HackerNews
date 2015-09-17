@@ -1,0 +1,16 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/app_bar_top_padding">
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar" />
+    <fragment
+        android:id="@+id/comment_fragment"
+        android:name="com.hacker.news.fragments.DetailedCommentFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tool_bar"
+        tools:layout="@layout/fragment_comment" />
+</RelativeLayout>

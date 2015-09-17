@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Hacker News</string>
+    <string name="error_timeout">Connection Timed Out</string>
+    <string name="error_network">Can\'t Connect</string>
+    <string name="error_comment_network"> Unable to Connect to the Network. Please check you internet connection and try again.</string>
+    <string name="error_parser">Data Received Was An Unreadable Mess</string>
+    <string name="refresh">Tap to Retry</string>
+    <string name="points">Points (%1$d)</string>
+    <string name="comment">Comments (%1$d)</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+    <string name="top_stories">Top Stories</string>
+
+    <string name="name">Manis Magic</string>
+
+
+</resources>
