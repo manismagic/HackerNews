@@ -21,7 +21,7 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesAdapter.To
     private Context mContext;
     private LayoutInflater inflater;
     private List<Story> listTopStories = Collections.emptyList();
-    private ItemClickListener mItemClickListener;
+    public ItemClickListener mItemClickListener;
 
     public TopStoriesAdapter(Context context) {
         mContext = context;
@@ -54,7 +54,7 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesAdapter.To
         notifyDataSetChanged();
     }
 
-    class TopStoriesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class TopStoriesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title;
         TextView author;
         TextView comment;
@@ -73,7 +73,7 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesAdapter.To
                 @Override
                 public void onClick(View v) {
                     if (null != mItemClickListener) {
-                        mItemClickListener.commentClicked(getAdapterPosition());
+                        mItemClickListener.commentClicked(listTopStories, getAdapterPosition());
                     }
                 }
             });
@@ -82,7 +82,7 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesAdapter.To
         @Override
         public void onClick(View v) {
             if (null != mItemClickListener) {
-                mItemClickListener.itemClicked(v, getAdapterPosition());
+                mItemClickListener.itemClicked(listTopStories, getAdapterPosition());
             }
         }
     }
@@ -92,8 +92,8 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesAdapter.To
     }
 
     public interface ItemClickListener {
-        void itemClicked(View view, int position);
+        void itemClicked(List<Story> story, int position);
 
-        void commentClicked(int position);
+        void commentClicked(List<Story> story, int position);
     }
 }

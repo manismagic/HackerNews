@@ -234,8 +234,8 @@ public class TopStoriesFragment extends Fragment implements TopStoriesAdapter.It
     Open a browser when user selected tap on the item in the list
      */
     @Override
-    public void itemClicked(View view, int position) {
-        String url = mListTopStories.get(position).getUrl();
+    public void itemClicked(List<Story> list, int position) {
+        String url = list.get(position).getUrl();
         if (null != url) {
             startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url)));
         }
@@ -246,12 +246,12 @@ public class TopStoriesFragment extends Fragment implements TopStoriesAdapter.It
      */
 
     @Override
-    public void commentClicked(int position) {
-        int commentCount = mListTopStories.get(position).getCommentCount();
+    public void commentClicked(List<Story> list, int position) {
+        int commentCount = list.get(position).getCommentCount();
         if (commentCount != 0) {
             Intent intent = new Intent(getActivity(), DetailedCommentActivity.class);
-            intent.putExtra("commentCount", mListTopStories.get(position).getCommentCount());
-            int[] kids = mListTopStories.get(position).getKids();
+            intent.putExtra("commentCount", list.get(position).getCommentCount());
+            int[] kids = list.get(position).getKids();
             intent.putExtra("kids", kids);
             startActivity(intent);
         }
@@ -273,6 +273,12 @@ public class TopStoriesFragment extends Fragment implements TopStoriesAdapter.It
         } else {
             mNetWorkError.setVisibility(View.VISIBLE);
         }
-        sendTopStoriesRequest();
+
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                sendTopStoriesRequest();
+            }
+        });
     }
 }
